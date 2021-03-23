@@ -8,18 +8,27 @@
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
 
+    <!-- JavaScript Bundle with Popper -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta3/dist/js/bootstrap.bundle.min.js" integrity="sha384-JEW9xMcG8R+pH31jmWH6WWP0WintQrMb4s7ZOdauHnUtxwoG2vI5DkLtS3qm9Ekf" crossorigin="anonymous"></script>
+
     <title>SEPIA Map Editor</title>
   </head>
 
   <body style="height:100%;display:flex;flex-direction:column;">
 
     <div id="file">
-        <input type="file" id="file-selector" accept=".xml">
-        <a href="" id="download" class="btn btn-primary">Download Map</a>
+      <input type="file" id="file-selector" accept=".xml">
+      <a href="" id="download" class="btn btn-primary">Download Map</a>
     </div>
+
+    <nav id="generators" class="sidebar">
+      <button id="randomize" class="btn btn-primary">Randomize</button>
+    </nav>
 
     <canvas id="map-canvas" style="width:100%;height:100%;"></canvas>
 
     <script src="SepiaMapEditor.js"></script>
+    <script src="LoadSave.js"></script>
+    <script src="RandomMap.js"></script>
   </body>
 </html>
