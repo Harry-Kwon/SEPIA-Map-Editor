@@ -29,7 +29,6 @@ let mapData = {
       addedNode.getElementsByTagName("ID")[0].textContent = ""+this.maxResourceNodeID;
       // add the node to the position table
       this.resourceNodes[x+y*this.xExtent] = addedNode;
-      console.log(addedNode);
       // attach the created node to the DOM
       this.rootElement.appendChild(addedNode);
     }
@@ -52,14 +51,12 @@ canvas.addEventListener("click", (event) => {
   const x = event.clientX - rect.left;
   const y = event.clientY - rect.top;
 
-  const tileWidth = Math.min(Math.floor(canvas.width/mapData.xExtent), Math.floor(canvas.width/mapData.yExtent));
-  console.log({tileWidth})
+  const tileWidth = Math.min(Math.floor(canvas.width/mapData.xExtent), Math.floor(canvas.height/mapData.yExtent));
   const tileX = Math.floor(x/tileWidth);
   const tileY = Math.floor(y/tileWidth);
 
   if([tileX+1, tileY+1, mapData.xExtent-tileX, mapData.yExtent-tileY].every((i) => (i>0))) {
     if(mapData.resourceNodes[tileX+tileY*mapData.xExtent]) {
-      console.log(mapData);
       mapData.removeResourceNode(tileX, tileY);
     } else {
       mapData.addResourceNode(tileX, tileY);
@@ -116,8 +113,7 @@ const onFileLoad = (xmlDocument) => {
     mapData.resourceNodes[x+mapData.xExtent*y] = node;
   }
 
-  console.log(mapData.resourceNodePrototype);
-
+  rescaleCanvas();
   renderMap();
 }
 
@@ -146,8 +142,6 @@ downloadLink.addEventListener('click', () => {
 
   const file = new Blob([xmlStr], {type: "application/xml"});
 
-  console.log("click");
-  
   downloadLink.href = URL.createObjectURL(file);
   downloadLink.download = "map.xml";
 })
